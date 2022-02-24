@@ -1,0 +1,77 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.2"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2
+					]
+				}
+			],
+			"name" : "Debug",
+			"projects" : 
+			[
+				{
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "laba1",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "gtests::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-gtests-Debug-669442f4f23cc1ecdc9f.json",
+					"name" : "gtests",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "lab_01::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-lab_01-Debug-52d47396e2aae7e1977a.json",
+					"name" : "lab_01",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "library::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-library-Debug-d3b8e59a1cadaf225c55.json",
+					"name" : "library",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "/home/stud/src/SSA_Mai/build",
+		"source" : "/home/stud/src/SSA_Mai"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 0
+	}
+}
