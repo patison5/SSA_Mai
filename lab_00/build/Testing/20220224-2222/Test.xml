@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Site BuildName="(empty)"
+	BuildStamp="20220224-2222-Experimental"
+	Name="(empty)"
+	Generator="ctest-3.16.3"
+	CompilerName=""
+	CompilerVersion=""
+	OSName="Linux"
+	Hostname="arch"
+	OSRelease="5.4.0-100-generic"
+	OSVersion="#113-Ubuntu SMP Thu Feb 3 18:43:29 UTC 2022"
+	OSPlatform="x86_64"
+	Is64Bits="1"
+	VendorString="GenuineIntel"
+	VendorID="Intel Corporation"
+	FamilyID="6"
+	ModelID="158"
+	ProcessorCacheSize="8192"
+	NumberOfLogicalCPU="4"
+	NumberOfPhysicalCPU="4"
+	TotalVirtualMemory="3935"
+	TotalPhysicalMemory="3931"
+	LogicalProcessorsPerPhysical="1"
+	ProcessorClockFrequency="4200"
+	>
+	<Testing>
+		<StartDateTime>Feb 24 22:22 UTC</StartDateTime>
+		<StartTestTime>1645741320</StartTestTime>
+		<TestList>
+			<Test>./gtests</Test>
+		</TestList>
+		<Test Status="passed">
+			<Name>gtests</Name>
+			<Path>.</Path>
+			<FullName>./gtests</FullName>
+			<FullCommandLine>/home/stud/src/SSA_Mai/lab_00/build/gtests</FullCommandLine>
+			<Results>
+				<NamedMeasurement type="numeric/double" name="Execution Time">
+					<Value>0.00214694</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="numeric/double" name="Processors">
+					<Value>1</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Completion Status">
+					<Value>Completed</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Command Line">
+					<Value>/home/stud/src/SSA_Mai/lab_00/build/gtests</Value>
+				</NamedMeasurement>
+				<Measurement>
+					<Value encoding="base64" compression="gzip">eJyNkcsKwjAQRff5ilnaRYO6dyEoLgSVFlehlFSjBNqJJKn+vmlTSn30cRd5DGdm7iRs1SqBqESUeIclWGGsgZtWRXMBU0q3U8LCVgnscpXx3AMCn1IrLAQ6WNiwfHzBC8/VRatTmnEjL4RBdD5AraQTp/Wa1gFXzmFex/0QBrM5FCaY0tijYJXleUBGMiTaP0ZddNzmLzTNpMsbstj39FZwHV7VCwnrfm3/l4LmSD87uSFO6zjebqpJm0xK3vcgq4A=</Value>
+				</Measurement>
+			</Results>
+		</Test>
+		<EndDateTime>Feb 24 22:22 UTC</EndDateTime>
+		<EndTestTime>1645741320</EndTestTime>
+		<ElapsedMinutes>0</ElapsedMinutes>
+	</Testing>
+</Site>

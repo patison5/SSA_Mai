@@ -1,6 +1,0 @@
-/home/stud/src/SSA_Mai/build/CMakeFiles/rebuild_cache.dir
-/home/stud/src/SSA_Mai/build/CMakeFiles/edit_cache.dir
-/home/stud/src/SSA_Mai/build/CMakeFiles/test.dir
-/home/stud/src/SSA_Mai/build/CMakeFiles/library.dir
-/home/stud/src/SSA_Mai/build/CMakeFiles/lab_01.dir
-/home/stud/src/SSA_Mai/build/CMakeFiles/gtests.dir

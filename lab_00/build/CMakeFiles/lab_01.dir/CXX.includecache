@@ -1,0 +1,20 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/stud/src/SSA_Mai/lab_00/config.h
+string
+-
+
+/home/stud/src/SSA_Mai/lab_00/main.cpp
+iostream
+-
+exception
+-
+config.h
+/home/stud/src/SSA_Mai/lab_00/config.h
+

@@ -1,0 +1,17 @@
+[
+{
+  "directory": "/home/stud/src/SSA_Mai/lab_00/build",
+  "command": "/bin/x86_64-linux-gnu-g++-9   -I\"/home/stud/src/SSA_Mai/lab_00/\\$$CMAKE_BINARY_DIR\"  -g   -Wall -Wextra -pedantic -Werror -o CMakeFiles/library.dir/config.cpp.o -c /home/stud/src/SSA_Mai/lab_00/config.cpp",
+  "file": "/home/stud/src/SSA_Mai/lab_00/config.cpp"
+},
+{
+  "directory": "/home/stud/src/SSA_Mai/lab_00/build",
+  "command": "/bin/x86_64-linux-gnu-g++-9   -I\"/home/stud/src/SSA_Mai/lab_00/\\$$CMAKE_BINARY_DIR\"  -g   -Wall -Wextra -pedantic -Werror -o CMakeFiles/lab_01.dir/main.cpp.o -c /home/stud/src/SSA_Mai/lab_00/main.cpp",
+  "file": "/home/stud/src/SSA_Mai/lab_00/main.cpp"
+},
+{
+  "directory": "/home/stud/src/SSA_Mai/lab_00/build",
+  "command": "/bin/x86_64-linux-gnu-g++-9   -I\"/home/stud/src/SSA_Mai/lab_00/\\$$CMAKE_BINARY_DIR\"  -g   -Wall -Wextra -pedantic -Werror -o CMakeFiles/gtests.dir/test.cpp.o -c /home/stud/src/SSA_Mai/lab_00/test.cpp",
+  "file": "/home/stud/src/SSA_Mai/lab_00/test.cpp"
+}
+]

@@ -1,1 +1,0 @@
-/bin/c++  -g  -rdynamic CMakeFiles/lab_01.dir/main.cpp.o  -o lab_01  liblibrary.a -lpthread 
