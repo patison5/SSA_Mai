@@ -1,0 +1,1 @@
+/usr/bin/g++  -g  -rdynamic CMakeFiles/gtests.dir/test.cpp.o  -o gtests  liblibrary.a -Wl,-Bstatic -lgtest -Wl,-Bdynamic -lpthread 

@@ -6,7 +6,7 @@
 
 #IncludeRegexTransform: 
 
-/home/stud/src/SSA_Mai/lab_00/config.h
+/home/stud/src/SSA_Mai/lab_00/header/config.h
 string
 -
 
@@ -15,6 +15,6 @@ iostream
 -
 exception
 -
-config.h
-/home/stud/src/SSA_Mai/lab_00/config.h
+header/config.h
+/home/stud/src/SSA_Mai/lab_00/header/config.h
 

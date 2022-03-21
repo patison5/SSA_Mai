@@ -1,0 +1,22 @@
+[
+{
+  "directory": "/home/stud/src/SSA_Mai/lab_01/build",
+  "command": "/usr/bin/g++   -I\"/home/stud/src/SSA_Mai/lab_01/\\$$CMAKE_BINARY_DIR\"  -g   -Wall -Wextra -pedantic -Werror -o CMakeFiles/library.dir/config.cpp.o -c /home/stud/src/SSA_Mai/lab_01/config.cpp",
+  "file": "/home/stud/src/SSA_Mai/lab_01/config.cpp"
+},
+{
+  "directory": "/home/stud/src/SSA_Mai/lab_01/build",
+  "command": "/usr/bin/g++  -DPOCO_ENABLE_CPP11 -DPOCO_ENABLE_CPP14 -DPOCO_HAVE_FD_EPOLL -DPOCO_OS_FAMILY_UNIX -DXML_DTD -D_DEBUG -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_REENTRANT -D_THREAD_SAFE -D_XOPEN_SOURCE=500 -I\"/home/stud/src/SSA_Mai/lab_01/\\$$CMAKE_BINARY_DIR\"  -g   -Wall -Wextra -pedantic -Werror -std=gnu++17 -o CMakeFiles/WebServer.dir/WebServer.cpp.o -c /home/stud/src/SSA_Mai/lab_01/WebServer.cpp",
+  "file": "/home/stud/src/SSA_Mai/lab_01/WebServer.cpp"
+},
+{
+  "directory": "/home/stud/src/SSA_Mai/lab_01/build",
+  "command": "/usr/bin/g++   -I\"/home/stud/src/SSA_Mai/lab_01/\\$$CMAKE_BINARY_DIR\"  -g   -Wall -Wextra -pedantic -Werror -o CMakeFiles/lab_01.dir/main.cpp.o -c /home/stud/src/SSA_Mai/lab_01/main.cpp",
+  "file": "/home/stud/src/SSA_Mai/lab_01/main.cpp"
+},
+{
+  "directory": "/home/stud/src/SSA_Mai/lab_01/build",
+  "command": "/usr/bin/g++   -I\"/home/stud/src/SSA_Mai/lab_01/\\$$CMAKE_BINARY_DIR\"  -g   -Wall -Wextra -pedantic -Werror -o CMakeFiles/gtests.dir/test.cpp.o -c /home/stud/src/SSA_Mai/lab_01/test.cpp",
+  "file": "/home/stud/src/SSA_Mai/lab_01/test.cpp"
+}
+]

@@ -1,0 +1,20 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/stud/src/SSA_Mai/lab_01/header/config.h
+string
+-
+
+/home/stud/src/SSA_Mai/lab_01/main.cpp
+iostream
+-
+exception
+-
+header/config.h
+/home/stud/src/SSA_Mai/lab_01/header/config.h
+
