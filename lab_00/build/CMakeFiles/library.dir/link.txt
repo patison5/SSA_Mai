@@ -1,2 +1,2 @@
-/bin/ar qc liblibrary.a  CMakeFiles/library.dir/config.cpp.o
-/bin/ranlib liblibrary.a
+/usr/bin/ar qc liblibrary.a  CMakeFiles/library.dir/config.cpp.o
+/usr/bin/ranlib liblibrary.a

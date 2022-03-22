@@ -20,7 +20,7 @@
 					]
 				}
 			],
-			"name" : "Debug",
+			"name" : "",
 			"projects" : 
 			[
 				{
@@ -42,21 +42,21 @@
 				{
 					"directoryIndex" : 0,
 					"id" : "gtests::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-gtests-Debug-585584f128e2362183f9.json",
+					"jsonFile" : "target-gtests-bbe77ed8faf37b921f3a.json",
 					"name" : "gtests",
 					"projectIndex" : 0
 				},
 				{
 					"directoryIndex" : 0,
 					"id" : "lab_01::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-lab_01-Debug-9e220979970a7dcebb16.json",
+					"jsonFile" : "target-lab_01-3b854b79960517a13075.json",
 					"name" : "lab_01",
 					"projectIndex" : 0
 				},
 				{
 					"directoryIndex" : 0,
 					"id" : "library::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-library-Debug-5165a44a69eb8c87aee4.json",
+					"jsonFile" : "target-library-f557a0fbe0d265ce73c5.json",
 					"name" : "library",
 					"projectIndex" : 0
 				}

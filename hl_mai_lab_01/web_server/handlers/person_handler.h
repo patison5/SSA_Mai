@@ -73,8 +73,6 @@ public:
                 (form.has("last_name")) && 
                 (form.has("age"))) {
                 
-                std::cout << "ебашим нового" << std::endl;
-
                 database::Person person;
                 person.first_name() = form.get("first_name");
                 person.last_name()  = form.get("last_name");

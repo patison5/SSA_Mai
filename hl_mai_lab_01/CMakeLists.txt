@@ -28,13 +28,27 @@ add_executable(${EXAMPLE_BINARY} main.cpp
                                  database/author.cpp
                                  database/person.cpp)
 
+add_executable(gtests test.cpp)
+
 
 target_include_directories(${EXAMPLE_BINARY} PRIVATE "${CMAKE_BINARY_DIR}")
+target_include_directories(gtests PRIVATE "${CMAKE_BINARY_DIR}")
+
 target_compile_options(${EXAMPLE_BINARY} PRIVATE -Wall -Wextra -pedantic -Werror )
+target_compile_options(gtests PRIVATE -Wall -Wextra -pedantic -Werror )
 
 
 target_link_libraries(${EXAMPLE_BINARY} PRIVATE 
                              ${CMAKE_THREAD_LIBS_INIT} 
+                             ${Poco_LIBRARIES}
+                             "PocoData"
+                             "PocoDataMySQL"
+                             "mysqlclient"
+                             ZLIB::ZLIB)
+
+target_link_libraries(gtests PRIVATE 
+                             ${CMAKE_THREAD_LIBS_INIT} 
+                             ${GTEST_LIBRARIES}
                              ${Poco_LIBRARIES}
                              "PocoData"
                              "PocoDataMySQL"
@@ -51,6 +65,8 @@ set(CPACK_GENERATOR DEB)
 set(CPACK_PACKAGE_VERSION_MAJOR "${PROJECT_VERSION_MAJOR}")
 set(CPACK_PACKAGE_VERSION_MINOR "${PROJECT_VERSION_MINOR}")
 set(CPACK_PACKAGE_VERSION_PATCH "${PROJECT_VERSION_PATCH}")
-set(CPACK_PACKAGE_CONTACT Dmitriy.Dzyuba@mts.ru)
+set(CPACK_PACKAGE_CONTACT lulex.py@gmail.com)
 include(CPack)
 
+enable_testing()
+add_test(gtests gtests)

@@ -60,15 +60,15 @@ include CMakeFiles/library.dir/flags.make
 CMakeFiles/library.dir/config.cpp.o: CMakeFiles/library.dir/flags.make
 CMakeFiles/library.dir/config.cpp.o: ../config.cpp
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/stud/src/SSA_Mai/lab_00/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/library.dir/config.cpp.o"
-	/bin/x86_64-linux-gnu-g++-9  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/library.dir/config.cpp.o -c /home/stud/src/SSA_Mai/lab_00/config.cpp
+	/usr/bin/g++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/library.dir/config.cpp.o -c /home/stud/src/SSA_Mai/lab_00/config.cpp
 
 CMakeFiles/library.dir/config.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/library.dir/config.cpp.i"
-	/bin/x86_64-linux-gnu-g++-9 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/stud/src/SSA_Mai/lab_00/config.cpp > CMakeFiles/library.dir/config.cpp.i
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/stud/src/SSA_Mai/lab_00/config.cpp > CMakeFiles/library.dir/config.cpp.i
 
 CMakeFiles/library.dir/config.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/library.dir/config.cpp.s"
-	/bin/x86_64-linux-gnu-g++-9 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/stud/src/SSA_Mai/lab_00/config.cpp -o CMakeFiles/library.dir/config.cpp.s
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/stud/src/SSA_Mai/lab_00/config.cpp -o CMakeFiles/library.dir/config.cpp.s
 
 # Object files for target library
 library_OBJECTS = \

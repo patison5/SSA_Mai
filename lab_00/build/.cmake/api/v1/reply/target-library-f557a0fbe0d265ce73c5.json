@@ -1,8 +1,9 @@
 {
+	"archive" : {},
 	"artifacts" : 
 	[
 		{
-			"path" : "gtests"
+			"path" : "liblibrary.a"
 		}
 	],
 	"backtrace" : 1,
@@ -10,8 +11,7 @@
 	{
 		"commands" : 
 		[
-			"add_executable",
-			"target_link_libraries",
+			"add_library",
 			"target_compile_options",
 			"target_include_directories"
 		],
@@ -27,25 +27,19 @@
 			{
 				"command" : 0,
 				"file" : 0,
-				"line" : 14,
+				"line" : 17,
 				"parent" : 0
 			},
 			{
 				"command" : 1,
 				"file" : 0,
-				"line" : 28,
+				"line" : 24,
 				"parent" : 0
 			},
 			{
 				"command" : 2,
 				"file" : 0,
-				"line" : 25,
-				"parent" : 0
-			},
-			{
-				"command" : 3,
-				"file" : 0,
-				"line" : 21,
+				"line" : 20,
 				"parent" : 0
 			}
 		]
@@ -56,29 +50,29 @@
 			"compileCommandFragments" : 
 			[
 				{
-					"fragment" : "-g  "
+					"fragment" : " "
 				},
 				{
-					"backtrace" : 3,
+					"backtrace" : 2,
 					"fragment" : "-Wall"
 				},
 				{
-					"backtrace" : 3,
+					"backtrace" : 2,
 					"fragment" : "-Wextra"
 				},
 				{
-					"backtrace" : 3,
+					"backtrace" : 2,
 					"fragment" : "-pedantic"
 				},
 				{
-					"backtrace" : 3,
+					"backtrace" : 2,
 					"fragment" : "-Werror"
 				}
 			],
 			"includes" : 
 			[
 				{
-					"backtrace" : 4,
+					"backtrace" : 3,
 					"path" : "/home/stud/src/SSA_Mai/lab_00/$CMAKE_BINARY_DIR"
 				}
 			],
@@ -89,52 +83,9 @@
 			]
 		}
 	],
-	"dependencies" : 
-	[
-		{
-			"backtrace" : 2,
-			"id" : "library::@6890427a1f51a3e7e1df"
-		}
-	],
-	"id" : "gtests::@6890427a1f51a3e7e1df",
-	"link" : 
-	{
-		"commandFragments" : 
-		[
-			{
-				"fragment" : "-g",
-				"role" : "flags"
-			},
-			{
-				"fragment" : "-rdynamic",
-				"role" : "flags"
-			},
-			{
-				"backtrace" : 2,
-				"fragment" : "liblibrary.a",
-				"role" : "libraries"
-			},
-			{
-				"fragment" : "-Wl,-Bstatic",
-				"role" : "libraries"
-			},
-			{
-				"fragment" : "-lgtest",
-				"role" : "libraries"
-			},
-			{
-				"fragment" : "-Wl,-Bdynamic",
-				"role" : "libraries"
-			},
-			{
-				"fragment" : "-lpthread",
-				"role" : "libraries"
-			}
-		],
-		"language" : "CXX"
-	},
-	"name" : "gtests",
-	"nameOnDisk" : "gtests",
+	"id" : "library::@6890427a1f51a3e7e1df",
+	"name" : "library",
+	"nameOnDisk" : "liblibrary.a",
 	"paths" : 
 	{
 		"build" : ".",
@@ -155,9 +106,9 @@
 		{
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
-			"path" : "test.cpp",
+			"path" : "config.cpp",
 			"sourceGroupIndex" : 0
 		}
 	],
-	"type" : "EXECUTABLE"
+	"type" : "STATIC_LIBRARY"
 }

@@ -60,15 +60,15 @@ include CMakeFiles/gtests.dir/flags.make
 CMakeFiles/gtests.dir/test.cpp.o: CMakeFiles/gtests.dir/flags.make
 CMakeFiles/gtests.dir/test.cpp.o: ../test.cpp
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/stud/src/SSA_Mai/lab_00/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/gtests.dir/test.cpp.o"
-	/bin/x86_64-linux-gnu-g++-9  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/gtests.dir/test.cpp.o -c /home/stud/src/SSA_Mai/lab_00/test.cpp
+	/usr/bin/g++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/gtests.dir/test.cpp.o -c /home/stud/src/SSA_Mai/lab_00/test.cpp
 
 CMakeFiles/gtests.dir/test.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/gtests.dir/test.cpp.i"
-	/bin/x86_64-linux-gnu-g++-9 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/stud/src/SSA_Mai/lab_00/test.cpp > CMakeFiles/gtests.dir/test.cpp.i
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/stud/src/SSA_Mai/lab_00/test.cpp > CMakeFiles/gtests.dir/test.cpp.i
 
 CMakeFiles/gtests.dir/test.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/gtests.dir/test.cpp.s"
-	/bin/x86_64-linux-gnu-g++-9 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/stud/src/SSA_Mai/lab_00/test.cpp -o CMakeFiles/gtests.dir/test.cpp.s
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/stud/src/SSA_Mai/lab_00/test.cpp -o CMakeFiles/gtests.dir/test.cpp.s
 
 # Object files for target gtests
 gtests_OBJECTS = \
