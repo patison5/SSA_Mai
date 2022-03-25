@@ -15,10 +15,11 @@
 using namespace Poco::Data::Keywords;
 using Poco::Data::Session;
 using Poco::Data::Statement;
+using Poco::Net::HTMLForm;
 
 namespace database
 {
-    void Person::init()
+    void Person::init(std::ostream &ostr)
     {
        std::cout << "Инициализируем таблицу для Person" << std::endl;
 
@@ -42,28 +43,28 @@ namespace database
                 Poco::Data::Statement insert(session);
                 insert << "INSERT INTO Users (first_name,last_name,login,age) VALUES('Fedor', 'Penin', 'lulex.py', '23'), ('NeFedor', 'Penin', 'Nelulex.py', '23'); ";
                 insert.execute();
+
+                ostr << "{ \"result\": true , \"message\": \"" << "Person table inited." << "\" }";  
             } catch (Poco::Data::MySQL::ConnectionException &e) {
-                std::cout << "connection:" << e.displayText() << std::endl;
+                ostr << "{ \"result\": false , \"message\": \"" << e.displayText() << "\" }";  
                 throw;
             } catch (Poco::Data::MySQL::StatementException &e) {
-                std::cout << "statement:" << e.displayText() << std::endl;
+                ostr << "{ \"result\": false , \"message\": \"" << e.displayText() << "\" }";  
                 throw;
             }
-
-            
         }
 
         catch (Poco::Data::MySQL::ConnectionException &e)
         {
-            std::cout << "connection:" << e.what() << std::endl;
-            throw;
+            ostr << "{ \"result\": false , \"message\": \"" << e.displayText() << "\" }";  
+            return;
         }
         catch (Poco::Data::MySQL::StatementException &e)
         {
-
-            std::cout << "statement:" << e.what() << std::endl;
-            throw;
+            ostr << "{ \"result\": false , \"message\": \"" << e.displayText() << "\" }"; 
+            return;
         }
+
     }
 
     Poco::JSON::Object::Ptr Person::toJSON() const
@@ -323,5 +324,83 @@ namespace database
     int &Person::age()
     {
         return _age;
+    }
+
+    void Person::AddNewPerson(std::ostream &ostr, HTMLForm &form) {
+        if ((form.has("login")) && 
+            (form.has("first_name")) && 
+            (form.has("last_name")) && 
+            (form.has("age"))) {
+            
+            database::Person person;
+            person.first_name() = form.get("first_name");
+            person.last_name()  = form.get("last_name");
+            person.login()      = form.get("login");
+            person.age()        = atol(form.get("age").c_str());
+
+            try
+            {
+                person.save_to_mysql();
+                ostr << "{ \"result\": true, \"message\": \"New Person added\" }";
+                return;
+            }
+            catch (...)
+            {
+                ostr << "{ \"result\": false , \"reason\": \" database error\" }";
+                return;
+            }
+        }
+    }
+
+    void Person::searchPerson(std::ostream &ostr, Poco::Net::HTMLForm &form) {
+        try
+        {
+            std::string  fn = form.get("first_name");
+            std::string  ln = form.get("last_name");
+
+            auto results = search(fn,ln);
+            Poco::JSON::Array arr;
+            for (auto s : results)
+                arr.add(s.toJSON());
+            Poco::JSON::Stringifier::stringify(arr, ostr);
+        }
+        catch (...)
+        {
+            ostr << "{ \"result\": false , \"reason\": \"not gound\" }";
+            return;
+        }
+    }
+
+    void Person::searchPersonById(std::ostream &ostr, Poco::Net::HTMLForm &form) {
+        long id = atol(form.get("id").c_str());
+
+        try
+        {
+            database::Person result = read_by_id(id);
+            Poco::JSON::Stringifier::stringify(result.toJSON(), ostr);
+            return;
+        }
+        catch (...)
+        {
+            ostr << "{ \"result\": false , \"reason\": \"not found\" }";
+            return;
+        }
+    }
+
+
+    void Person::searchByLogin(std::ostream &ostr, Poco::Net::HTMLForm &form) {
+        std::string login = form.get("login");
+
+        try
+        {
+            database::Person result = database::Person::find_by_login(login);
+            Poco::JSON::Stringifier::stringify(result.toJSON(), ostr);
+            return;
+        }
+        catch (...)
+        {
+            ostr << "{ \"result\": false , \"reason\": \"not found\" }";
+            return;
+        } 
     }
 }

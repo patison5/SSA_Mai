@@ -62,90 +62,15 @@ public:
         std::ostream &ostr = response.send();
 
         if (form.has("init"))
-        {
-            database::Person::init();
-            ostr << "{ \"result\": true , \"message\": \"Database inited\" }";
-            return;
-        } else if (form.has("add"))
-        {
-            if ((form.has("login")) && 
-                (form.has("first_name")) && 
-                (form.has("last_name")) && 
-                (form.has("age"))) {
-                
-                database::Person person;
-                person.first_name() = form.get("first_name");
-                person.last_name()  = form.get("last_name");
-                person.login()      = form.get("login");
-                person.age()        = atol(form.get("age").c_str());
-
-                try
-                {
-                    person.save_to_mysql();
-                    ostr << "{ \"result\": true }";
-                    return;
-                }
-                catch (...)
-                {
-                    ostr << "{ \"result\": false , \"reason\": \" database error\" }";
-                    return;
-                }
-            }
-
-            ostr << "{ \"result\": true, \"message\": \"New Person added\" }";
-            return;
-        } else if (form.has("search")) {
-            try
-            {
-                std::string  fn = form.get("first_name");
-                std::string  ln = form.get("last_name");
-                auto results = database::Person::search(fn,ln);
-                Poco::JSON::Array arr;
-                for (auto s : results)
-                    arr.add(s.toJSON());
-                Poco::JSON::Stringifier::stringify(arr, ostr);
-            }
-            catch (...)
-            {
-                ostr << "{ \"result\": false , \"reason\": \"not gound\" }";
-                return;
-            }
-            return;
-
-        } else if (form.has("id")) {
-            long id = atol(form.get("id").c_str());
-
-            std::cout << id << std::endl;
-
-            try
-            {
-                database::Person result = database::Person::read_by_id(id);
-                Poco::JSON::Stringifier::stringify(result.toJSON(), ostr);
-                return;
-            }
-            catch (...)
-            {
-                ostr << "{ \"result\": false , \"reason\": \"not found\" }";
-                return;
-            }
-        } else if (form.has("login"))
-        {
-            std::string login = form.get("login");
-
-            try
-            {
-                database::Person result = database::Person::find_by_login(login);
-                Poco::JSON::Stringifier::stringify(result.toJSON(), ostr);
-                return;
-            }
-            catch (...)
-            {
-                ostr << "{ \"result\": false , \"reason\": \"not found\" }";
-                return;
-            } 
-
-            return;
-        } 
+            return database::Person::init(ostr);
+        else if (form.has("add"))
+            return database::Person::AddNewPerson(ostr, form);
+        else if (form.has("search"))
+            return database::Person::searchPerson(ostr, form);
+        else if (form.has("id"))
+            return database::Person::searchPersonById(ostr, form);
+        else if (form.has("login"))
+            return database::Person::searchByLogin(ostr, form);
 
         auto results = database::Person::read_all();
         Poco::JSON::Array arr;

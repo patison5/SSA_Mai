@@ -4,7 +4,7 @@
 #include <string>
 #include <vector>
 #include "Poco/JSON/Object.h"
-
+#include "Poco/Net/HTMLForm.h"
 
 namespace database
 {
@@ -33,12 +33,17 @@ namespace database
             std::string &login();
             int         &age();
 
-            static void init();
             static Person read_by_id(long id);
             static Person find_by_login(std::string login);
             static std::vector<Person> read_all();
             static std::vector<Person> search(std::string first_name,std::string last_name);
             void save_to_mysql();
+
+            static void AddNewPerson(std::ostream &ostr, Poco::Net::HTMLForm &form);
+            static void init(std::ostream &ostr);
+            static void searchPerson(std::ostream &ostr, Poco::Net::HTMLForm &form);
+            static void searchPersonById(std::ostream &ostr, Poco::Net::HTMLForm &form);
+            static void searchByLogin(std::ostream &ostr, Poco::Net::HTMLForm &form);
 
             Poco::JSON::Object::Ptr toJSON() const;
     };

@@ -178,6 +178,8 @@ protected:
             ServerSocket svs(Poco::Net::SocketAddress("0.0.0.0", port));
             HTTPServer srv(new HTTPRequestFactory(format),
                            svs, new HTTPServerParams);
+            
+            std::cout  << "server started at " << port << std::endl;
             srv.start();
             waitForTerminationRequest();
             srv.stop();
