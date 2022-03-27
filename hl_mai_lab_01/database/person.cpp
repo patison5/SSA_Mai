@@ -21,50 +21,56 @@ namespace database
 {
     void Person::init(std::ostream &ostr)
     {
-       std::cout << "Инициализируем таблицу для Person" << std::endl;
-
        try
         {
-            Poco::Data::Session session = database::Database::get().create_session();
-            Statement drop_stmt(session);
-            drop_stmt << "DROP TABLE IF EXISTS Users", now;
+            std::string res = InitDefaultPersonTable();
 
-            Statement create_stmt(session);
-            create_stmt << "CREATE TABLE IF NOT EXISTS `Users` ("
-                    << "    u_id int NOT NULL AUTO_INCREMENT, "
-                    << "    first_name VARCHAR(30), "
-                    << "    login VARCHAR(30) NOT NULL UNIQUE, "
-                    << "    last_name VARCHAR(30), "
-                    << "    age int, "
-                    << "    PRIMARY KEY (u_id)"
-                    << ");",
-                now;
-            try {
-                Poco::Data::Statement insert(session);
-                insert << "INSERT INTO Users (first_name,last_name,login,age) VALUES('Fedor', 'Penin', 'lulex.py', '23'), ('NeFedor', 'Penin', 'Nelulex.py', '23'); ";
-                insert.execute();
-
-                ostr << "{ \"result\": true , \"message\": \"" << "Person table inited." << "\" }";  
-            } catch (Poco::Data::MySQL::ConnectionException &e) {
-                ostr << "{ \"result\": false , \"message\": \"" << e.displayText() << "\" }";  
-                throw;
-            } catch (Poco::Data::MySQL::StatementException &e) {
-                ostr << "{ \"result\": false , \"message\": \"" << e.displayText() << "\" }";  
-                throw;
+            if (res == "true") {
+                ostr << "{ \"result\": true, \"tableInited\": true, \"testUsersInited\": true }";
+            } else {
+                ostr << "{ \"result\": false , \"tableInited\": true, \"testUsersInited\": false, \"message\": \"" << res << "\" }";  
             }
         }
 
         catch (Poco::Data::MySQL::ConnectionException &e)
         {
-            ostr << "{ \"result\": false , \"message\": \"" << e.displayText() << "\" }";  
+            ostr << "{ \"result\": false , \"tableInited\": false, \"testUsersInited\": false, \"message\": \"" << e.displayText() << "\" }";
             return;
         }
         catch (Poco::Data::MySQL::StatementException &e)
         {
-            ostr << "{ \"result\": false , \"message\": \"" << e.displayText() << "\" }"; 
+            ostr << "{ \"result\": false , \"tableInited\": false, \"testUsersInited\": false, \"message\": \"" << e.displayText() << "\" }";
             return;
         }
 
+    }
+
+
+    std::string Person::InitDefaultPersonTable() {
+        Poco::Data::Session session = database::Database::get().create_session();
+        Statement drop_stmt(session);
+        drop_stmt << "DROP TABLE IF EXISTS Users", now;
+
+        Statement create_stmt(session);
+        create_stmt << "CREATE TABLE IF NOT EXISTS `Users` ("
+                << "    u_id int NOT NULL AUTO_INCREMENT, "
+                << "    first_name VARCHAR(30), "
+                << "    login VARCHAR(30) NOT NULL UNIQUE, "
+                << "    last_name VARCHAR(30), "
+                << "    age int, "
+                << "    PRIMARY KEY (u_id)"
+                << ");",
+            now;
+        try {
+            Poco::Data::Statement insert(session);
+            insert << "INSERT INTO Users (first_name,last_name,login,age) VALUES('Fedor', 'Penin', 'lulex.py', '23'), ('NeFedor', 'Penin', 'Nelulex.py', '23'); ";
+            insert.execute();
+            return "true";
+        } catch (Poco::Data::MySQL::ConnectionException &e) {
+            return e.displayText();
+        } catch (Poco::Data::MySQL::StatementException &e) {
+            return e.displayText();
+        }
     }
 
     Poco::JSON::Object::Ptr Person::toJSON() const
@@ -126,7 +132,6 @@ namespace database
 
     Person Person::find_by_login(std::string login) 
     {
-
         try
         {
             Poco::Data::Session session = database::Database::get().create_session();
@@ -232,6 +237,11 @@ namespace database
         catch (Poco::Data::MySQL::StatementException &e)
         {
             std::cout << "statement:" << e.displayText() << std::endl;
+            throw;
+        }
+
+        catch (...) {
+            std::cout << "some shit happens" << std::endl;
             throw;
         }
     }

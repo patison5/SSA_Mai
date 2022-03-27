@@ -45,6 +45,8 @@ namespace database
             static void searchPersonById(std::ostream &ostr, Poco::Net::HTMLForm &form);
             static void searchByLogin(std::ostream &ostr, Poco::Net::HTMLForm &form);
 
+            static std::string InitDefaultPersonTable();
+
             Poco::JSON::Object::Ptr toJSON() const;
     };
 }

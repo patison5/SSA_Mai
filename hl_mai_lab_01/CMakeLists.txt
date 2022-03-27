@@ -28,7 +28,11 @@ add_executable(${EXAMPLE_BINARY} main.cpp
                                  database/author.cpp
                                  database/person.cpp)
 
-add_executable(gtests test.cpp)
+add_executable(gtests test.cpp
+                        config/config.cpp 
+                        database/database.cpp
+                        database/author.cpp
+                        database/person.cpp)
 
 
 target_include_directories(${EXAMPLE_BINARY} PRIVATE "${CMAKE_BINARY_DIR}")
