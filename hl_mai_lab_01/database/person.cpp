@@ -42,9 +42,7 @@ namespace database
             ostr << "{ \"result\": false , \"tableInited\": false, \"testUsersInited\": false, \"message\": \"" << e.displayText() << "\" }";
             return;
         }
-
     }
-
 
     std::string Person::InitDefaultPersonTable() {
         Poco::Data::Session session = database::Database::get().create_session();
@@ -192,12 +190,12 @@ namespace database
 
         catch (Poco::Data::MySQL::ConnectionException &e)
         {
-            std::cout << "connection:" << e.what() << std::endl;
+            std::cout << "connection:" << e.displayText() << std::endl;
             throw;
         }
         catch (Poco::Data::MySQL::StatementException &e)
         {
-            std::cout << "statement:" << e.what() << std::endl;
+            std::cout << "statement:" << e.displayText() << std::endl;
             throw;
         }
     }

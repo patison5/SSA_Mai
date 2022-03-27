@@ -23,6 +23,12 @@ void setDatabase() {
     isIinited = true;
 }
 
+TEST(check_person_login, person_table_set) {
+    database::Person person;
+    person.login() = "Theodor";
+    EXPECT_EQ("Theodor", person.get_login()) << "логины должны совпадать";
+}
+
 TEST(init_person_table, person_table_set) {
 
     setDatabase();
@@ -51,7 +57,7 @@ TEST(create_new_person, person_creation_set) {
     person.first_name() = "Theodor";
     person.last_name()  = "Zalupkin";
     person.login()      = "ZaluTH";
-    person.age()        = 22;
+    person.age()        = 23;
 
     try
     {
@@ -108,6 +114,18 @@ TEST(search_by_login, basic_test_set) {
 
 
     
+}
+
+TEST(get_all_persons, person_table_set) {
+    auto results = database::Person::read_all();
+
+    if (results.size() <= 0) {
+        ASSERT_TRUE(false);
+    }
+
+    for (auto s : results) {
+        EXPECT_EQ(23, s.get_age()) << "Все возраста должны быть равны 23";
+    }
 }
 
 int main ([[maybe_unused]] int argc, [[maybe_unused]] char **argv) {
