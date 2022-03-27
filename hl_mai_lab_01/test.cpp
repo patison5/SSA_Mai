@@ -119,9 +119,7 @@ TEST(search_by_login, basic_test_set) {
 TEST(get_all_persons, person_table_set) {
     auto results = database::Person::read_all();
 
-    if (results.size() <= 0) {
-        ASSERT_TRUE(false);
-    }
+    EXPECT_EQ(results.size(), 3) << "Кол-во объектов класса Person должно быть равно 3.";
 
     for (auto s : results) {
         EXPECT_EQ(23, s.get_age()) << "Все возраста должны быть равны 23";
