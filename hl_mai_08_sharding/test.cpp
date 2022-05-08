@@ -8,6 +8,9 @@
 #include "database/database.h"
 #include "database/person.h"
 #include "config/config.h"
+#include "vector"
+
+#include <thread>
 
 bool isInited = false;
 
@@ -82,6 +85,50 @@ TEST(get_all_persons, person_table_set) {
     for (auto s : results) {
         EXPECT_EQ(23, s.get_age()) << "Все возраста должны быть равны 23";
     }
+}
+
+// The function we want to execute on the new thread.
+void task1()
+{
+    // auto results = database::Person::read_all();
+
+    setDatabase();
+
+    database::Person person;
+    person.first_name() = "Theodor";
+    person.last_name()  = "Zalupkin";
+    person.login()      = "ZaluTH";
+    person.age()        = 23;
+
+    person.save_to_mysql();
+}
+
+TEST(test_add, basic_test_set) // добавление записей с последующей проверкой
+{
+    std::vector<std::thread *> vec_threads(5);
+    testing::internal::CaptureStdout();
+
+    for(int i = 0; i < 5; i++)
+    {
+        std::thread tmp(task1);
+        tmp.join();
+    }
+
+    // Constructs the new thread and runs it. Does not block execution.
+    
+    sleep(4);
+    std::vector<int> res(4);
+
+    // for(i = 0; i < vec_threads.size(); i++) // параллельно создаём запросы на поиск
+    // {
+    //     vec_threads[i] = new thread(check_person, persons[i], res.data() + i);
+    // }
+    // WAIT_ALL_THREADS(vec_threads);
+
+    // std::string t = testing::internal::GetCapturedStdout();
+    // std::cout << t << std::endl;
+
+    ASSERT_TRUE(testing::internal::GetCapturedStdout() == ""); // проверяем ошибки
 }
 
 int main ([[maybe_unused]] int argc, [[maybe_unused]] char **argv) {
