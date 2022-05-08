@@ -21,6 +21,8 @@ using Poco::Net::HTMLForm;
 namespace database
 {
 
+    // MAKR: -
+
     void Person::init(std::ostream &ostr)
     {
        try

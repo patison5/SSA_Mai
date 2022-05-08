@@ -53,8 +53,8 @@ namespace database
             static Person find_by_login(std::string login);
             static void searchPerson(std::ostream &ostr, Poco::Net::HTMLForm &form);
             static void searchByLogin(std::ostream &ostr, Poco::Net::HTMLForm &form);
+            
             static std::string InitDefaultPersonTable();
-
     };
 }
 

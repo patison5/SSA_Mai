@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.2)
 
 project(hl_mai_08_sharding C CXX)
 
-SET (EXAMPLE_BINARY "hl_mai_08_sharding")
+SET (EXAMPLE_BINARY "hl_mai_lab_02")
 
 find_package(OpenSSL)
 find_package(Threads)
