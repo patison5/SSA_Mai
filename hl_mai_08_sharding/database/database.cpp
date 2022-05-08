@@ -19,7 +19,7 @@ namespace database{
     }
 
     size_t Database::get_max_shard(){
-        return 2;
+        return 1;
     }
 
     std::vector<std::string> Database::get_all_hints(){
@@ -29,6 +29,14 @@ namespace database{
             shard_name += std::to_string(i);
             result.push_back(shard_name);
         }
+        return result;
+    }
+
+    std::string Database::sharding_hint(std::string key){
+        int max_shard = get_max_shard() + 1;
+        size_t shard_number = std::hash<std::string>{}(key) % max_shard;
+        std::string result = "-- sharding:";
+        result += std::to_string(shard_number);
         return result;
     }
 

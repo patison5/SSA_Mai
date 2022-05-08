@@ -41,6 +41,7 @@ using Poco::Util::ServerApplication;
 #include "handlers/author_handler.h"
 #include "handlers/message_handler.h"
 #include "handlers/web_page_handler.h"
+#include "handlers/person_handler.h"
 
 static bool startsWith(const std::string &str, const std::string &prefix)
 {
@@ -59,10 +60,13 @@ public:
     {
         static std::string author = "/author";
         static std::string message = "/message";
+        static std::string person = "/person";
         if (startsWith(request.getURI(), author))
             return new AuthorHandler(_format);
         if (startsWith(request.getURI(), message))
             return new MessageHandler(_format);
+        if (startsWith(request.getURI(), person))
+            return new PersonHandler(_format);
         return new WebPageHandler(_format);
         return 0;
     }
