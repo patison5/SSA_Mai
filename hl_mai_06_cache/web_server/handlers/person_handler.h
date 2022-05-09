@@ -61,45 +61,6 @@ public:
         response.setContentType("application/json");
         std::ostream &ostr = response.send();
 
-         bool no_cache = false;
-        if (form.has("no_cache"))
-            no_cache = true;
-
-        if (form.has("login"))
-        {
-            std::string login = form.get("login");
-            if (!no_cache) {
-                try
-                {
-                    database::Person result = database::Person::read_from_cache_by_login(login);
-                    std::cout << "item from cache:" << login << std::endl;
-                    Poco::JSON::Stringifier::stringify(result.toJSON(), ostr);
-                    return;
-                }
-                catch (...)
-                {
-                    std::cout << "cache missed for login:" << login << std::endl;
-                }
-            }
-
-            try
-            {
-                // Шаблон «сквозное чтение»
-                // если записи нет в кеше - ситаем из БД
-                // и записываем в кеш
-                database::Person result = database::Person::find_by_login(login);
-                if (!no_cache)
-                    result.save_to_cache();
-                Poco::JSON::Stringifier::stringify(result.toJSON(), ostr);
-                return;
-            }
-            catch (std::exception &ex)
-            {
-                ostr << "{ \"result\": false , \"reason\": \"" << ex.what() << "\" }";
-                return;
-            }
-        }
-
         if (form.has("init"))
             return database::Person::init(ostr);
         else if (form.has("add"))

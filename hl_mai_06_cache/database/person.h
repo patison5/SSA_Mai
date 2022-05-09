@@ -27,7 +27,7 @@ namespace database
             const std::string   &get_login() const;
             const int           &get_age() const;
 
-            long&        u_id();
+            long        &u_id();
             std::string &first_name();
             std::string &last_name();
             std::string &login();

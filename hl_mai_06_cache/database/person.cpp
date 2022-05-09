@@ -23,12 +23,11 @@ namespace database
 
     Person Person::read_from_cache_by_login(std::string login)
     {
-        std::cout << login << std::endl;
         try
         {
             std::string result;
             size_t data = std::hash<std::string>{}(login);
-            int id = static_cast<int>(data);
+            long id = static_cast<long>(data);
 
             if (database::Cache::get().get(id, result))
                 return fromJSON(result);
@@ -67,7 +66,8 @@ namespace database
         std::string message = ss.str();
 
         size_t data = std::hash<std::string>{}(_login);
-        int id = static_cast<int>(data);
+        long id = static_cast<long>(data);
+
         database::Cache::get().put(id, message);
     }
 
@@ -132,16 +132,22 @@ namespace database
         root->set("last_name", _last_name);
         root->set("login", _login);
         root->set("age", _age);
-
         return root;
     }
 
     Person Person::fromJSON(const std::string &str)
     {
-        Person person; 
+        Person person;
         Poco::JSON::Parser parser;
         Poco::Dynamic::Var result = parser.parse(str);
         Poco::JSON::Object::Ptr object = result.extract<Poco::JSON::Object::Ptr>();
+
+        person.u_id() = object->getValue<long>("id");
+        person.first_name() = object->getValue<std::string>("first_name");
+        person.last_name() = object->getValue<std::string>("last_name");
+        person.age() = object->getValue<int>("age");
+        person.login() = object->getValue<std::string>("login");
+
         return person;
     }
 
@@ -362,11 +368,6 @@ namespace database
         return _age;
     }
 
-    long &Person::u_id()
-    {
-        return _u_id;
-    }
-
     std::string &Person::first_name()
     {
         return _first_name;
@@ -387,6 +388,11 @@ namespace database
         return _age;
     }
 
+    long &Person::u_id()
+    {
+        return _u_id;
+    }
+
     void Person::AddNewPerson(std::ostream &ostr, HTMLForm &form) {
         if ((form.has("login")) && 
             (form.has("first_name")) && 
@@ -402,6 +408,7 @@ namespace database
             try
             {
                 person.save_to_mysql();
+                person.save_to_cache();
                 ostr << "{ \"result\": true, \"message\": \"New Person added\" }";
                 return;
             }
@@ -452,9 +459,31 @@ namespace database
     void Person::searchByLogin(std::ostream &ostr, Poco::Net::HTMLForm &form) {
         std::string login = form.get("login");
 
+        bool no_cache = false;
+        if (form.has("no_cache"))
+            no_cache = true;
+
+        if (!no_cache) {
+            try
+            {
+                database::Person result = database::Person::read_from_cache_by_login(login);
+                std::cout << "item from cache:" << login << std::endl;
+                Poco::JSON::Stringifier::stringify(result.toJSON(), ostr);
+                return;
+            }
+            catch (...)
+            {
+                std::cout << "cache missed for login: " << login << std::endl;
+            }
+        }
+
         try
         {
             database::Person result = database::Person::find_by_login(login);
+            if (!no_cache) {
+                std::cout << "saving to cache: " << login << std::endl;
+                result.save_to_cache();
+            }
             Poco::JSON::Stringifier::stringify(result.toJSON(), ostr);
             return;
         }

@@ -51,9 +51,10 @@ namespace database
         _cache.RemoveAll();;
     }
 
-    bool Cache::get(int id, std::string& val){
+    bool Cache::get(long id, std::string& val){
         try{
             val = _cache.Get(id);
+            std::cout << val << std::endl;
             return true;
         }catch(...){
             throw std::logic_error("key not found in cache");
