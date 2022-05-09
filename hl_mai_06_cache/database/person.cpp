@@ -20,7 +20,6 @@ using Poco::Net::HTMLForm;
 
 namespace database
 {
-
     Person Person::read_from_cache_by_login(std::string login)
     {
         try
@@ -29,7 +28,7 @@ namespace database
             size_t data = std::hash<std::string>{}(login);
             long id = static_cast<long>(data);
 
-            if (database::Cache::get().get(id, result))
+            if (database::Cache::get().get(Cache::CacheType::persons, id, result))
                 return fromJSON(result);
             else
                 throw std::logic_error("key not found in the cache");
@@ -56,7 +55,7 @@ namespace database
 
 
     size_t Person::size_of_cache(){
-        return database::Cache::get().size();
+        return database::Cache::get().size(Cache::CacheType::persons);
     }
 
     void Person::save_to_cache()
@@ -68,7 +67,7 @@ namespace database
         size_t data = std::hash<std::string>{}(_login);
         long id = static_cast<long>(data);
 
-        database::Cache::get().put(id, message);
+        database::Cache::get().put(Cache::CacheType::persons, id, message);
     }
 
 

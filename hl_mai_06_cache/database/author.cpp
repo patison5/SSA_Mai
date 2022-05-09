@@ -120,11 +120,10 @@ namespace database
 
     Author Author::read_from_cache_by_id(long id)
     {
-
         try
         {
             std::string result;
-            if (database::Cache::get().get(id, result))
+            if (database::Cache::get().get(Cache::CacheType::authors, id, result))
                 return fromJSON(result);
             else
                 throw std::logic_error("key not found in the cache");
@@ -150,7 +149,7 @@ namespace database
 
 
     size_t Author::size_of_cache(){
-        return database::Cache::get().size();
+        return database::Cache::get().size(Cache::CacheType::authors);
     }
 
     void Author::save_to_cache()
@@ -158,7 +157,7 @@ namespace database
         std::stringstream ss;
         Poco::JSON::Stringifier::stringify(toJSON(), ss);
         std::string message = ss.str();
-        database::Cache::get().put(_id, message);
+        database::Cache::get().put(Cache::CacheType::authors, _id, message);
     }
 
     std::vector<Author> Author::read_all()

@@ -2,6 +2,7 @@
 #include "../config/config.h"
 
 namespace database{
+
     Database::Database(){
         _connection_string+="host=";
         _connection_string+=Config::get().get_host();
