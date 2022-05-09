@@ -8,7 +8,6 @@
 #include <exception>
 
 static ignite::thin::IgniteClient _client;
-static ignite::thin::cache::CacheClient<long, std::string> _cache;
 
 namespace database
 {
@@ -23,7 +22,6 @@ namespace database
         try
         {
             _client = ignite::thin::IgniteClient::Start(cfg);
-            _cache = _client.GetOrCreateCache<long, std::string>("authors");
 
             _caches.insert( std::pair<CacheType,ignite::thin::cache::CacheClient<long, std::string>>(CacheType::authors, _client.GetOrCreateCache<long, std::string>("authors")) );
             _caches.insert( std::pair<CacheType,ignite::thin::cache::CacheClient<long, std::string>>(CacheType::persons, _client.GetOrCreateCache<long, std::string>("persons")) );

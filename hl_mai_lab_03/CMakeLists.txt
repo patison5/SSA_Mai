@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.2)
 
 project(hl_event_server C CXX)
 
-SET (EXAMPLE_BINARY "hl_mai_06_cache")
+SET (EXAMPLE_BINARY "hl_mai_lab_03")
 
 find_package(OpenSSL)
 find_package(Threads)
