@@ -60,8 +60,8 @@ public:
     HTTPRequestHandler* createRequestHandler(
         const HTTPServerRequest& request)
     {
-        static std::string author="/author"; 
-        if (startsWith(request.getURI(),author)) return new AuthorHandler(_format);
+        // static std::string author="/author"; 
+        // if (startsWith(request.getURI(),author)) return new AuthorHandler(_format);
 
         static std::string person="/person"; 
         if (startsWith(request.getURI(), person)) return new PersonHandler(_format);

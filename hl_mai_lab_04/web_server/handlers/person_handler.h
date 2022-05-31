@@ -72,6 +72,8 @@ public:
         else if (form.has("login"))
             return database::Person::searchByLogin(ostr, form);
 
+        std::cout << "handle request " << std::endl;
+
         auto results = database::Person::read_all();
         Poco::JSON::Array arr;
         for (auto s : results)

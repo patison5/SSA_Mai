@@ -90,6 +90,14 @@ namespace database
         Poco::JSON::Parser parser;
         Poco::Dynamic::Var result = parser.parse(str);
         Poco::JSON::Object::Ptr object = result.extract<Poco::JSON::Object::Ptr>();
+
+        person.u_id() = object->getValue<long>("id");
+        person.login() = object->getValue<std::string>("login");
+        person.first_name() = object->getValue<std::string>("first_name");
+        person.last_name() = object->getValue<std::string>("last_name");
+        person.age() = object->getValue<int>("age");
+
+
         return person;
     }
 
@@ -252,6 +260,13 @@ namespace database
         {
             Poco::Data::Session session = database::Database::get().create_session_write();
             Poco::Data::Statement insert(session);
+            
+            std::cout << "--------------" << std::endl;
+            std::cout << _first_name << std::endl;
+            std::cout << _last_name << std::endl;
+            std::cout << _login << std::endl;
+            std::cout << _age << std::endl;
+            std::cout << "--------------" << std::endl;
 
             insert << "INSERT INTO Users (first_name,last_name,login,age) VALUES(?, ?, ?, ?)",
                 use(_first_name),
@@ -349,7 +364,7 @@ namespace database
 
             try
             {
-                person.save_to_mysql();
+                // person.save_to_mysql();
                 static int i=0;
                 person.send_to_queue();
                 std::cout << "send to queue: " << std::to_string(++i)  << std::endl;

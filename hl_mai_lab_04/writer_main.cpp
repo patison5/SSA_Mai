@@ -98,22 +98,12 @@ int main(int argc, char *argv[])
                     std::string payload = msg.get_payload();
                     std::cout << msg.get_payload() << std::endl;
 
-
-
-                    // Костыль, решение которому я пока не придумал..) использовать get_key()?
                     try {
-                        database::Author a = database::Author::fromJSON(payload);
-                        a.save_to_mysql();
-
-                        try {
-                            database::Person b = database::Person::fromJSON(payload);
-                            b.save_to_mysql();
-                            std::cout << "Person added!" << std::endl;
-                        } catch(...) {
-                            std::cout << "some error gotted!" << std::endl;
-                        }
-                    } catch(...) {
-                        std::cout << "some error gotted!" << std::endl;
+                        database::Person b = database::Person::fromJSON(payload);
+                        b.save_to_mysql();
+                        std::cout << "Person added!" << std::endl;
+                    } catch(std::exception& e) {
+                        std::cout << e.what() << std::endl;
                     }
 
                     // Now commit the message
